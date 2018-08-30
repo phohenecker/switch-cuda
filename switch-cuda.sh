@@ -79,4 +79,5 @@ export PATH="${new_path}"
 
 echo "Switched to CUDA ${TARGET_VERSION}."
 
+set +e
 return
