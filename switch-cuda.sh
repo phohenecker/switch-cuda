@@ -29,7 +29,7 @@ set -e
 
 
 # ensure that the script has been sourced rather than just executed
-if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
+if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
     echo "Please use 'source' to execute switch-cuda.sh!"
     exit 1
 fi
@@ -38,7 +38,7 @@ INSTALL_FOLDER="/usr/local"  # the location to look for CUDA installations at
 TARGET_VERSION=${1}          # the target CUDA version to switch to (if provided)
 
 # if no version to switch to has been provided, then just print all available CUDA installations
-if [ -z ${TARGET_VERSION} ]; then
+if [[ -z ${TARGET_VERSION} ]]; then
     echo "The following CUDA installations have been found (in '${INSTALL_FOLDER}'):"
     ls -l "${INSTALL_FOLDER}" | egrep -o "cuda-[0-9]+\\.[0-9]+$" | while read -r line; do
         echo "* ${line}"
@@ -46,7 +46,7 @@ if [ -z ${TARGET_VERSION} ]; then
     set +e
     return
 # otherwise, check whether there is an installation of the requested CUDA version
-elif [ ! -d "${INSTALL_FOLDER}/cuda-${TARGET_VERSION}" ]; then
+elif [[ ! -d "${INSTALL_FOLDER}/cuda-${TARGET_VERSION}" ]]; then
     echo "No installation of CUDA ${TARGET_VERSION} has been found!"
     set +e
     return
