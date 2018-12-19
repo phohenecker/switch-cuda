@@ -43,10 +43,12 @@ if [ -z ${TARGET_VERSION} ]; then
     ls -l "${INSTALL_FOLDER}" | egrep -o "cuda-[0-9]+\\.[0-9]+$" | while read -r line; do
         echo "* ${line}"
     done
+    set +e
     return
 # otherwise, check whether there is an installation of the requested CUDA version
 elif [ ! -d "${INSTALL_FOLDER}/cuda-${TARGET_VERSION}" ]; then
     echo "No installation of CUDA ${TARGET_VERSION} has been found!"
+    set +e
     return
 fi
 
